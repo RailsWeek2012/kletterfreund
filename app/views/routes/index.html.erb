@@ -1,0 +1,31 @@
+<h1>Listing routes</h1>
+
+<table>
+  <tr>
+    <th>Area</th>
+    <th>Grade</th>
+    <th>Directions</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @routes.each do |route| %>
+  <tr>
+    <td><%= route.area_id %></td>
+    <td><%= route.grade %></td>
+    <td><%= route.directions %></td>
+    <td><%= route.latitude %></td>
+    <td><%= route.longitude %></td>
+    <td><%= link_to 'Show', route %></td>
+    <td><%= link_to 'Edit', edit_route_path(route) %></td>
+    <td><%= link_to 'Destroy', route, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Route', new_route_path %>

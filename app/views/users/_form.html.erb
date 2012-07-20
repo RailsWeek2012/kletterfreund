@@ -1,0 +1,17 @@
+<%= simple_form_for(@user, :html => {:class => 'form-vertical' }) do |f| %>
+    <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.input :email, :input_html => { :class => 'span6' } %>
+  <%= f.input :password, :input_html => { :rows => 10, :class => 'span6' } %>
+  <%= f.input :password_confirmation, :input_html => { :rows => 10, :class => 'span6' } %>
+  <%= f.button :submit, :class => 'span6'  %>
+<% end %>

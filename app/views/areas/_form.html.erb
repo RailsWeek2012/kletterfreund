@@ -1,0 +1,19 @@
+
+<%= simple_form_for(@area, :html => {:class => 'form-vertical' }) do |f| %>
+    <% if @area.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@area.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @area.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.input :name, :placeholder => name_value,:input_html => { :class => span_style  } %>
+  <%= f.input :location, :placeholder => location_value, :input_html => { :class => span_style  } %>
+
+  <%= f.submit "Auf Karte suchen", :button => 'search_location', :class => span_style  %>
+  <%= f.submit "Speichern", :button => 'save', :class => span_style  %>
+<% end %>

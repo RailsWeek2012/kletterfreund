@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Area:</b>
+  <%= @route.area_id %>
+</p>
+
+<p>
+  <b>Grade:</b>
+  <%= @route.grade %>
+</p>
+
+<p>
+  <b>Directions:</b>
+  <%= @route.directions %>
+</p>
+
+<p>
+  <b>Latitude:</b>
+  <%= @route.latitude %>
+</p>
+
+<p>
+  <b>Longitude:</b>
+  <%= @route.longitude %>
+</p>
+
+
+<%= link_to 'Edit', edit_route_path(@route) %> |
+<%= link_to 'Back', routes_path %>

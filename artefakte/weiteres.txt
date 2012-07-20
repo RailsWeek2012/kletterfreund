@@ -1,0 +1,6 @@
+Weitere Features die Nice-to-have waeren aber evtl den Rahmen sprengen: 
+  Kommentare zu Klettergebieten
+  User-Rollen: (mindestens Admin und User, evtl zwischenstufe fuer erfahrene Kletterer, deren Name dann bunt ist oder aehnliches)
+  Benutzerprofile: (erreichbar ueber die Kommentare) mit tabellarischer Ansicht der bewerteten (gekletterten) Routen, Fotos, Mini-Bio etc
+  Anmeldung ueber OpenID
+  Kletterpartner-Suche: In der Klettergebiet-Ansicht koennte es einen Button "Ich moechte hier klettern" und "Leute die hier Klettern moechten" geben, ueber die man mit anderen Kletterern zwecks Terminabsprahce in Kontakt treten kann. Man koennte nun auch nach direkt nach Kletterpartner in einem bestimmten Umkreis suchen.

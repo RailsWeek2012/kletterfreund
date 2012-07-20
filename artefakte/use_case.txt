@@ -1,0 +1,73 @@
+Kletterfreund-Webseite Use-Case Tabelle
+
+UC 1.01
+  Registrieren
+    User koennen sich mit Email und Passwort registrieren
+
+UC 1.02
+  Anmelden
+    User koennen sich mit Email und Passwort anmelden
+
+UC 1.03
+  Kletterroute suchen
+    User koennen nach Kletterroute suchen
+    Es stehen folgende Felder zur einschraenkung der Suche zur Verfuegung:
+      - Umkreis (z.b. 50 KM im Umkreis von Giessen)
+      - Schwierigkeitsgrad
+      - Name des Klettergebiets
+    Ergebnisse werden in tabellarischer Form angezeigt; Klick auf Name bringt den User zur Detailansicht
+
+UC 1.04
+  Kletterroute Detailansicht
+  @Pre: Es wurde eine Suche durchgefuehrt
+    Nach erfolgreicher Suche kann die Detailansicht aufgerufen werden
+    Hier werden folgende Informationen angezeigt:
+      Schwierigkeitsgrad
+      Fotos
+      Wegbeschreibung
+      Maps-Anzeige mit dem Standort der Route bzw. des Klettergebiets
+    Ein weiterer Link verweist den User auf das zugehoerige Klettergebiet
+    AUsserdem finden sich in der Detailansicht:
+      Durchschnittliche Bewertung des Schwierigkeitsgrads (von Benutzern vergeben) 
+      Kommentare zur Kletterroute
+
+UC 1.05
+  Klettergebiet hinzufuegen
+  @Pre: User ist eingeloggt
+    User koennen neue KLettergebiete in die Datenbank eintragen
+    Folgende Daten muessen eingegeben werden:
+      Name des Klettergebiets
+      Standort des Klettergebiets
+
+UC 1.06
+  Kletterroute hinzufuegen
+  @Pre: User ist eingeloggt
+    User koennen neue KLettergebiete in die Datenbank eintragen
+    Folgende Daten muessen eingegeben werden:
+      Schwierigskeitsgrad 
+      Wegbeschreibung
+      Verweis auf das Klettergebiet (muss vorher in der Datenbank exisiteren)
+    Optional koennen GPS-Koordinaten der Route eingegeben werden (falls der Standort zu stark von dem des Gebiets abweicht)
+
+UC 1.07
+  Fotos hinzufuegen
+  @Pre: User ist eingeloggt
+    User koennen Fotos zu Klettergebieten bzw. Routen hinzufuegen
+    Dies geschieht nachtraeglich in der Detailansicht
+
+UC 1.08
+  Umrechnung Bewertungsskalten
+    Webseite bietet die Moeglichkeit den vorgegebenen bzw. abgestimmten Schwierigkeitsgrad in verschiedene Bewertungsskalen umzurechen (UIAA, franz., etc http://en.wikipedia.org/wiki/Grade_%28climbing%29#Free_climbing_2)
+
+UC 1.09
+  KOmmentare hinzufuegen bzw. Bewerten
+    @Pre: User ist eingeloggt
+    User koennen zu Kletterrouten eigene Kommentare abgeben
+    Bei der Abgabe von Komentaren kann gleichzeit eine optionale Bewertung des "gefuehlten" Schwierigkeitsgrads abgeschickt werden
+
+UC 1.10
+    Klettergebiet Detailansicht
+      Klettergebiete koennen in der Detailansicht angezeigt werden
+      Dort werden Name, Standort und Fotos angezeigt
+      Die Webanwendung berechnet die durchschnittliche Schwierigkeit der Route, die dem Gebiet zugeordnet wurden
+      Zugehoerige Routen werden tabellarisch angezeigt (mit Link auf Detailsicht selbiger)

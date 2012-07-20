@@ -1,0 +1,32 @@
+User
+-email:string
+-password_digest:string
+-has_many Comments
+
+Route
+-has_many RPictures
+-has_many Comments
+-belongs_to Area (area_id:integer)
+-grade:string
+-directions:string
+-latitude:float (gmaps4rails)
+-longitude:float (gmaps4rails)
+
+Area
+-has_many Routes
+-has_many GPictures
+-name:string
+-location:string
+-latitude:float (gmaps4rails)
+-longitude:float (gmaps4rails)
+
+Picture
+-type:integer
+-path_to_image:string
+-belongs_to :pictureable, :polymorphic => true
+
+Comment
+-belongs_to Route (route_id:integer)
+-belongs_to User (user_id:integer)
+-user_text:string
+-user_grade:string

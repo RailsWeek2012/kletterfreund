@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kletterfreund</title>
+  <%= stylesheet_link_tag    "application", :media =>
+  "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %></head>
+<body>
+
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span3">
+        <div class="well" >
+          <ul class="nav nav-list">
+            <li class="nav-header">Navigation</li>
+            <!--li class="active">
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="#">Library</a>
+          </li-->
+          <li>
+            <%= link_to "Klettergebiet eintragen", area_new_path %></li>
+          <li>
+            <a href="#">Route eintragen</a>
+          </li>
+          <li>
+            <!--h3>Route suchen</h3-->
+          <div id="accordion2" class="accordion">
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" href="#collapseOne" data-parent="#accordion2" data-toggle="collapse">Kletterrouten suchen</a>
+              </div>
+              <div id="collapseOne" class="accordion-body collapse" style="height: 0px;">
+                <div class="accordion-inner">
+                  <div class="navbar-form-desc-txt">Ort</div>
+                  <input type="text" class="span12">
+                  <div class="navbar-form-desc-txt">Umkreis (in Kilometern)</div>
+                  <div class="btn-group" style="align:center">
+                    <button class="btn">10</button>
+                    <button class="btn">25</button>
+                    <button class="btn active">50</button>
+                    <button class="btn">100</button>
+                    <button class="btn">egal</button>
+                  </div>
+
+                  <div class="navbar-form-desc-txt">Schwierigkeitsgrad (UIAA)</div>
+                  <div style="float:left">
+                    <select >
+                      <option>III</option>
+                      <option>IV</option>
+                      <option>V</option>
+                      <option>VI</option>
+                      <option>VII</option>
+                    </select>
+                  </div>
+                  <button class="btn" style="width:100px;margin-left:auto;float:right">Suchen</button>
+                  <div style="clear:both"></div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-header">&nbsp;</li>
+          <li >
+            <div class="btn-group">
+              <% if user_signed_in? %>
+              <p class="label" style="text-align:center">
+                Eingeloggt als:
+                <%= current_user_email %></p>
+              <% end %>
+              <% unless user_signed_in? %>
+              <%= link_to login_path do %>
+              <button class="btn">Login</button>
+              <% end %>
+              <% else %>
+              <%= link_to logout_path, method: :delete do %>
+              <button class="btn">Logout</button>
+              <% end %>
+              <% end %>
+              <%= link_to register_path do %>
+              <button class="btn">Register</button>
+              <% end %></div>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+    <div class="span9">
+      <div class="well">
+        <% if flash[:notice] %>
+        <p id="notice">
+          <span class="label label-success">Notice</span>
+          <%= flash[:notice] %></p>
+        <% end %>
+
+        <% if flash[:alert] %>
+        <p id="alert">
+          <span class="label label-important">Warning</span>
+          <%= flash[:alert] %></p>
+        <% end %>
+        
+        <%= yield %></div>
+    </div>
+  </div>
+</div>
+
+<%= yield :scripts %></body>
+</html>
