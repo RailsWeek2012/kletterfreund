@@ -1,0 +1,21 @@
+<h1>Neues Klettergebiet hinzufuegen</h1>
+
+
+<%= debug @area.picture %>
+<div style="float:left">
+<%= render :partial => 'form', :locals => {     input_name_placeholder: @area.name, 
+                                                input_location_placeholder: @area.location, 
+                                                show_file_upload: false,
+                                                form_submit_label: "Abspeichern", 
+                                                form_submit_action: "submit_save_map"
+                                                } %>
+</div>
+<div style="float:left" >
+  <% if @show_precise_location.nil? %>
+    <%# dont show marker %>
+    <%= gmaps(:map_options => { :auto_zoom => false, :zoom => 5, :bounds => @json }) %>
+  <% else %>
+    <%= gmaps(:map_options => { :auto_zoom => false, :zoom => 15}, "markers" => { "data" => @json }) %>
+  <% end %>
+</div>
+<div style="clear:both"></div>

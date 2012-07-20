@@ -1,4 +1,14 @@
 <h1>Neues Klettergebiet hinzufuegen</h1>
 
+<div style="float:left">
 <%= render :partial => 'form', :locals => {:span_style => "span5", :name_value => "", :location_value => ""} %>
-
+</div>
+<div style="float:left" >
+  <% if @show_precise_location.nil? %>
+    <%# dont show marker %>
+    <%= gmaps(:map_options => { :auto_zoom => false, :zoom => 5, :bounds => @json }) %>
+  <% else %>
+    <%= gmaps(:map_options => { :auto_zoom => false, :zoom => 15}, "markers" => { "data" => @json }) %>
+  <% end %>
+</div>
+<div style="clear:both"></div>

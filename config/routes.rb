@@ -1,4 +1,5 @@
 Kletterfreund::Application.routes.draw do
+
   get "register" => "users#new", as: "register"
   post "users/create", as: "users"
 
@@ -6,9 +7,17 @@ Kletterfreund::Application.routes.draw do
   post "sessions" => "session#create", as: "sessions"
   delete "logout" => "session#destroy", as: "logout"
 
-  get "areas/new" => "areas#new", as: "area_new"
+  
+  get "areas/new" => "areas#new", as: "areas_new"
   post "areas" => "areas#create", as: "areas"
+  get "areas" => "areas#create", as: "areas_map"
+  put "areas" => "areas#update", as: "areas_update"
   post "areas/search_map" => "areas#search_map", as: "search_map"
+  get "areas/edit/:id" => "areas#edit", as: "areas_edit"
+  get "areas/:id" => "areas#show", as: "areas_show"
+
+  post "pictures" => "pictures#create", as: "pictures"
+  
 
   root to: "pages#home", as: "home"
 

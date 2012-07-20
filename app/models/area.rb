@@ -7,6 +7,6 @@ class Area < ActiveRecord::Base
 	attr_accessible :latitude, :location, :longitude, :name, :gmaps
 
   def gmaps4rails_address
-    @location
+    self.location
   end
 end

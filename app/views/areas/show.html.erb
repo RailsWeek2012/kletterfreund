@@ -1,25 +1,46 @@
-<p id="notice"><%= notice %></p>
+<p id="notice">
+  <%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @area.name %>
-</p>
+<div style="float:left; width:40%">
+  <div>
+    <span >Name:</span>
+    <span >
+      <%= @area.name %></span> 
+      <span><%= @area.pictures.count %> Bilder</span>
+  </div>
+  <div>
+    <%= image_tag(@area.pictures.first.path_to_picture) unless @area.pictures.first.nil? %>
+  </div>
+  <div>
+    <span >Location:</span>
+    <span >
+      <%= @area.location %></span>
+  </div>
+</div>
+<div style="float:left" >
+  <%= gmaps(:map_options =>
+  { :auto_zoom => false, :zoom => 15}, "markers" => { "data" => @area.to_gmaps4rails }) %>
+</div>
 
-<p>
-  <b>Location:</b>
-  <%= @area.location %>
-</p>
-
-<p>
-  <b>Latitude:</b>
-  <%= @area.latitude %>
-</p>
-
-<p>
-  <b>Longitude:</b>
-  <%= @area.longitude %>
-</p>
 
 
-<%= link_to 'Edit', edit_area_path(@area) %> |
+<div class="span8">
+  <h3>Bild hochladen</h3>
+  <%= form_for @upload_picture, :html =>
+  {:multipart => true} do |f| %>
+  <p>Bild</p>
+  <%= f.file_field :path_to_picture %>
+  <%= f.hidden_field :path_to_picture_cache %>
+  <% #put hidden parameter to params[:picture][:area_id] %>
+  <%= f.hidden_field 'area_id', :value => @area.id %>  
+  <br>
+  
+  <%= f.submit "Upload" %>
+  <% end %>
+</div>
+<div style="clear:both"></div>
+
+</div>
+
+<%#= link_to 'Edit', edit_area_path(@area) %>
 <%= link_to 'Back', areas_path %>

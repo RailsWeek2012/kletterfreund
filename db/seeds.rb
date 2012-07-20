@@ -5,3 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Area.create(id: 1, name: "Eschbacher Klippen", location: "Eschbacher Klippen, Usingen, Deutschland")
