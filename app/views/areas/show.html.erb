@@ -1,6 +1,8 @@
 <p id="notice">
   <%= notice %></p>
 
+
+
 <div style="float:left; width:40%">
   <div>
     <span >Name:</span>
@@ -9,7 +11,20 @@
       <span><%= @area.pictures.count %> Bilder</span>
   </div>
   <div>
-    <%= image_tag(@area.pictures.first.path_to_picture) unless @area.pictures.first.nil? %>
+    <% picture_id = params[:picture_id] %>  
+    <% unless picture_id.nil? %>
+      <% selected_picture = @area.pictures.find(picture_id) %>
+    <% else %>
+      <% selected_picture = @area.pictures.first %>
+    <% end %>
+
+    <% unless selected_picture.nil? or  selected_picture.previous.nil? %>
+    <%= link_to "<<", prev_picture_path(:area_id => @area.id, :picture_id => selected_picture.previous.id) %>
+    <% end %>
+    <%= image_tag(selected_picture.path_to_picture) unless selected_picture.nil? %>
+    <% unless selected_picture.nil? or  selected_picture.next.nil? %>
+    <%= link_to ">>", next_picture_path(:area_id => @area.id, :picture_id => selected_picture.next.id) %>
+    <% end %>
   </div>
   <div>
     <span >Location:</span>

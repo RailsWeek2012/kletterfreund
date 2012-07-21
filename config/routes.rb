@@ -17,7 +17,8 @@ Kletterfreund::Application.routes.draw do
   get "areas/:id" => "areas#show", as: "areas_show"
 
   post "pictures" => "pictures#create", as: "pictures"
-  
+  get "pictures/prev/" => "pictures#prev", as: "prev_picture"
+  get "pictures/next/" => "pictures#next", as: "next_picture" 
 
   root to: "pages#home", as: "home"
 
