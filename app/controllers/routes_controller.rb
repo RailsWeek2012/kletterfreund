@@ -1,24 +1,10 @@
 class RoutesController < ApplicationController
-  # GET /routes
-  # GET /routes.json
-  def index
-    @routes = Route.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @routes }
-    end
-  end
-
   # GET /routes/1
   # GET /routes/1.json
   def show
     @route = Route.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @route }
-    end
+    @upload_picture = Picture.new
+    @comment = Comment.new
   end
 
   # GET /routes/new
@@ -26,58 +12,50 @@ class RoutesController < ApplicationController
   def new
     @route = Route.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @route }
-    end
   end
 
-  # GET /routes/1/edit
-  def edit
-    @route = Route.find(params[:id])
-  end
 
   # POST /routes
   # POST /routes.json
   def create
     @route = Route.new(params[:route])
+    case params[:commit] 
+    when "Gebiet suchen"
+        @gebiete = Area.where("name LIKE ? || '%'", params[:route][:area_name])
 
-    respond_to do |format|
-      if @route.save
-        format.html { redirect_to @route, notice: 'Route was successfully created.' }
-        format.json { render json: @route, status: :created, location: @route }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @route.errors, status: :unprocessable_entity }
-      end
+        if @gebiete.length == 0
+          flash.now[:notice] = "Es wurde kein Gebiet mit diesem Namen gefunden."
+          render "new"
+        end
+
+        @selected_grade = params[:route][:grade]
+        @entered_directions = params[:route][:directions]
+        @entered_name = params[:route][:name]
+
+          flash.now[:notice] = "Bitte waehlen sie ein Gebiet aus der Liste aus."
+    when "Abspeichern"
+        selected_area = Area.find_by_id(params[:route][:area_select_index])
+        @route.area = selected_area
+        @route.latitude = selected_area.latitude
+        @route.longitude = selected_area.longitude
+
+        if @route.save
+          flash.now[:notice] = "Sie haben eine neue Route eingetragen."
+          redirect_to routes_show_path(@route)
+        else
+          flash.now[:alert] = "Fehler beim Abspeichern der Route"
+          render "new"
+        end
     end
+
   end
 
-  # PUT /routes/1
-  # PUT /routes/1.json
-  def update
-    @route = Route.find(params[:id])
+  private
 
-    respond_to do |format|
-      if @route.update_attributes(params[:route])
-        format.html { redirect_to @route, notice: 'Route was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @route.errors, status: :unprocessable_entity }
-      end
-    end
+  def uiaa_grades
+      ["I", "II", "III", "IV", "IV+", "V", "V+", "VI-", "VI", "VI+", "VII-", "VII", "VII+", "VIII", "VIII+", "IX-", "IX",
+       "IX+", "X-", "X", "X+", "XI-", "XI", "XI+"]
   end
 
-  # DELETE /routes/1
-  # DELETE /routes/1.json
-  def destroy
-    @route = Route.find(params[:id])
-    @route.destroy
-
-    respond_to do |format|
-      format.html { redirect_to routes_url }
-      format.json { head :no_content }
-    end
-  end
+  helper_method :uiaa_grades
 end

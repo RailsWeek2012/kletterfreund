@@ -11,51 +11,26 @@
       <span><%= @area.pictures.count %> Bilder</span>
   </div>
   <div>
-    <% picture_id = params[:picture_id] %>  
-    <% unless picture_id.nil? %>
-      <% selected_picture = @area.pictures.find(picture_id) %>
-    <% else %>
-      <% selected_picture = @area.pictures.first %>
-    <% end %>
-
-    <% unless selected_picture.nil? or  selected_picture.previous.nil? %>
-    <%= link_to "<<", prev_picture_path(:area_id => @area.id, :picture_id => selected_picture.previous.id) %>
-    <% end %>
-    <%= image_tag(selected_picture.path_to_picture) unless selected_picture.nil? %>
-    <% unless selected_picture.nil? or  selected_picture.next.nil? %>
-    <%= link_to ">>", next_picture_path(:area_id => @area.id, :picture_id => selected_picture.next.id) %>
-    <% end %>
+    <%= render :partial => "image_view", :locals => { route_or_area_object: @area, is_area: true} %>
   </div>
   <div>
     <span >Location:</span>
     <span >
       <%= @area.location %></span>
   </div>
+
 </div>
 <div style="float:left" >
   <%= gmaps(:map_options =>
   { :auto_zoom => false, :zoom => 15}, "markers" => { "data" => @area.to_gmaps4rails }) %>
 </div>
 
-
-
 <div class="span8">
-  <h3>Bild hochladen</h3>
-  <%= form_for @upload_picture, :html =>
-  {:multipart => true} do |f| %>
-  <p>Bild</p>
-  <%= f.file_field :path_to_picture %>
-  <%= f.hidden_field :path_to_picture_cache %>
-  <% #put hidden parameter to params[:picture][:area_id] %>
-  <%= f.hidden_field 'area_id', :value => @area.id %>  
-  <br>
-  
-  <%= f.submit "Upload" %>
-  <% end %>
+    <%= render :partial => "upload_pic_form", :locals => { route_or_area_object: @area, is_area: true} %>
 </div>
 <div style="clear:both"></div>
 
 </div>
 
 <%#= link_to 'Edit', edit_area_path(@area) %>
-<%= link_to 'Back', areas_path %>
+<%= link_to 'Back', home_path %>

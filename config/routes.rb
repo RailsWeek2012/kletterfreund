@@ -6,19 +6,23 @@ Kletterfreund::Application.routes.draw do
   get "login" => "session#new", as: "login"
   post "sessions" => "session#create", as: "sessions"
   delete "logout" => "session#destroy", as: "logout"
-
   
   get "areas/new" => "areas#new", as: "areas_new"
   post "areas" => "areas#create", as: "areas"
   get "areas" => "areas#create", as: "areas_map"
   put "areas" => "areas#update", as: "areas_update"
-  post "areas/search_map" => "areas#search_map", as: "search_map"
   get "areas/edit/:id" => "areas#edit", as: "areas_edit"
   get "areas/:id" => "areas#show", as: "areas_show"
 
   post "pictures" => "pictures#create", as: "pictures"
   get "pictures/prev/" => "pictures#prev", as: "prev_picture"
   get "pictures/next/" => "pictures#next", as: "next_picture" 
+
+  get "routes/new" => "routes#new", as: "routes_new"
+  post "routes" => "routes#create", as: "routes"
+  get "routes/:id" => "routes#show", as: "routes_show"
+
+    post "comments" => "comments#create", as: "comments"  
 
   root to: "pages#home", as: "home"
 

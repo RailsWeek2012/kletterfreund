@@ -1,0 +1,8 @@
+
+<hr>
+<%= simple_form_for(@comment, :html => {:class => 'form-vertical' }) do |f| %>
+  <%= f.input :user_text, :label => "Kommentar", :as => :text,  :input_html => { :class => "span6" } %>
+  <%= f.input :user_grade, :label => "Gefuehlter Schwierigkeitsgrad", :collection => uiaa_grades, :selected => uiaa_grades.first, :input_html => { :class => "span6" }  %>
+  <%= f.submit "Kommentar abgeben", :class => "span6"  %>
+  <%= f.hidden_field 'route_id', :value => @route.id %>  
+<% end %>

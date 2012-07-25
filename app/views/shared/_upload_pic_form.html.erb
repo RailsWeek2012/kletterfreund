@@ -1,0 +1,20 @@
+<%# user of this partial is expected to pass the following locals:  %>    
+<% is_area = nil if local_assigns[:is_area].nil? %>
+<% route_or_area_object = nil if local_assigns[:route_or_area_object].nil?%>
+
+  <h3>Bild hochladen</h3>
+  <%= form_for @upload_picture, :html =>
+  {:multipart => true} do |f| %>
+  <p>Bild</p>
+  <%= f.file_field :path_to_picture %>
+  <%= f.hidden_field :path_to_picture_cache %>
+  <% #put hidden parameter to params[:picture][:area_id] %>
+  <% if is_area %>
+    <%= f.hidden_field 'area_id', :value => route_or_area_object.id %>
+  <% else %>  
+    <%= f.hidden_field 'route_id', :value => route_or_area_object.id %>
+  <% end %>
+  <br>
+  
+  <%= f.submit "Upload" %>
+  <% end %>

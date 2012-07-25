@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def require_login! 
     unless user_signed_in?
-      redirect_to home_path, alert: "Sie muessen eingeloggt sein, um diese Funktion zu nutzen."
+      redirect_to login_path, alert: "Sie muessen eingeloggt sein, um diese Funktion zu nutzen."
     end
   end
   
@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
     current_user.email
   end
   
+  helper_method :require_login!
   helper_method :user_signed_in?
   helper_method :current_user_email 
 end

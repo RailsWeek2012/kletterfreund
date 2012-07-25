@@ -1,0 +1,13 @@
+<% require_login! %>
+
+<h1>Route speichern</h1>
+
+<%= render :partial => 'form', :locals => {     form_submit_label: "Abspeichern",
+                                                input_grade_selected_index: @selected_grade,
+                                                input_directions_placeholder: @entered_directions,
+                                                input_name_placeholder: @entered_name, 
+                                                show_area_select: true,
+                                                gebiete: @gebiete  
+                                                } %>
+
+<%= link_to 'Back', home_path %>

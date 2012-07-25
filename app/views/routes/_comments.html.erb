@@ -1,0 +1,13 @@
+<table>
+  <tr>
+    <th>Kommentar</th>
+    <th>Bewertung</th>
+  </tr>
+
+<% @route.comments.each do |comment| %>
+  <tr>
+    <td><%= comment.user_text %></td>
+    <td><%= comment.user_grade %></td>
+  </tr>
+<% end %>
+</table>

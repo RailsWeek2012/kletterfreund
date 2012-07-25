@@ -1,0 +1,29 @@
+<%# user of this partial is expected to pass the following locals:  %>    
+<% is_area = nil if local_assigns[:is_area].nil? %>
+<% route_or_area_object = nil if local_assigns[:route_or_area_object].nil?%>
+
+<% unless is_area.nil? and route_or_area_object.nil? %>
+    <% picture_id = params[:picture_id] %>  
+    <% unless picture_id.nil? %>
+      <% selected_picture = route_or_area_object.pictures.find(picture_id) %>
+    <% else %>
+      <% selected_picture = route_or_area_object.pictures.first %>
+    <% end %>
+    <% unless selected_picture.nil? or  selected_picture.previous.nil? %>
+        <% if is_area %>
+            <%= link_to "<<", prev_picture_path(:area_id => route_or_area_object.id, :picture_id => selected_picture.previous.id) %>
+        <% else %>
+            <%= link_to "<<", prev_picture_path(:route_id => route_or_area_object.id, :picture_id => selected_picture.previous.id) %>
+        <% end %>
+    <% end %>
+    <%= image_tag(selected_picture.path_to_picture) unless selected_picture.nil? %>
+    <% unless selected_picture.nil? or  selected_picture.next.nil? %>
+        <% if is_area %>
+            <%= link_to ">>", next_picture_path(:area_id => route_or_area_object.id, :picture_id => selected_picture.next.id) %>
+        <% else %>
+            <%= link_to ">>", next_picture_path(:route_id => route_or_area_object.id, :picture_id => selected_picture.next.id) %>
+        <% end %>
+    <% end %>
+<% else %>
+    <p> failed to render: image_view partial is missing some locals </p>
+<% end %>

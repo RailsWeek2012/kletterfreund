@@ -9,4 +9,13 @@ class Area < ActiveRecord::Base
   def gmaps4rails_address
     self.location
   end
+
+  def to_select_label
+    "#{name}"
+  end
+
+  def to_select_id
+    "#{id}"
+  end
+
 end

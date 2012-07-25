@@ -1,17 +1,9 @@
 class AreasController < ApplicationController
-  # GET /areas
-  # GET /areas.json
-  def index
-    @areas = Area.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @areas }
-    end
-  end
+  #def index
+  #  @areas = Area.all
+  #end
 
-  # GET /areas/1
-  # GET /areas/1.json
   def show
     @area = Area.find(params[:id])
     @upload_picture = Picture.new
@@ -58,41 +50,6 @@ class AreasController < ApplicationController
           flash.now[:alert] = "Fehler beim Abspeichern der Location"
           render "new"
         end
-    end
-  end
-
-  # GET /areas/1/edit
-  def edit
-    @area = Area.find(params[:id])
-  end
-
-
-
-  # PUT /areas/1
-  # PUT /areas/1.json
-  def update
-    @area = Area.find(params[:id])
-
-    respond_to do |format|
-      if @area.update_attributes(params[:area])
-        format.html { redirect_to @area, notice: 'Area was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @area.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /areas/1
-  # DELETE /areas/1.json
-  def destroy
-    @area = Area.find(params[:id])
-    @area.destroy
-
-    respond_to do |format|
-      format.html { redirect_to areas_url }
-      format.json { head :no_content }
     end
   end
 

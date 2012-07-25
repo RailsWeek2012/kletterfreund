@@ -1,4 +1,10 @@
-<%= form_for(@route) do |f| %>
+<% form_submit_label = "Gebiet suchen" if local_assigns[:form_submit_label].nil? %>
+<% input_grade_selected_index = uiaa_grades.first if local_assigns[:input_grade_selected_index].nil? %>
+<% input_directions_placeholder = "" if local_assigns[:input_directions_placeholder].nil? %>
+<% input_name_placeholder = "" if local_assigns[:input_name_placeholder].nil? %>
+<% show_area_select = false if local_assigns[:show_area_select].nil? %>
+
+<%= simple_form_for(@route, :html => {:class => 'form-vertical' }) do |f| %>
   <% if @route.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@route.errors.count, "error") %> prohibited this route from being saved:</h2>
@@ -11,27 +17,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :area_id %><br />
-    <%= f.number_field :area_id %>
-  </div>
-  <div class="field">
-    <%= f.label :grade %><br />
-    <%= f.text_field :grade %>
-  </div>
-  <div class="field">
-    <%= f.label :directions %><br />
-    <%= f.text_field :directions %>
-  </div>
-  <div class="field">
-    <%= f.label :latitude %><br />
-    <%= f.text_field :latitude %>
-  </div>
-  <div class="field">
-    <%= f.label :longitude %><br />
-    <%= f.text_field :longitude %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.input :name, :label => "Name der Route",:placeholder => input_name_placeholder, :input_html => { :class => "span6" } %>
+  <% unless show_area_select  %>
+    <%= f.input   :area_name,  :label => "Gebiet", :input_html => { :class => "span6" } %>
+  <% else %>
+    <%= f.input :area_select_index, :label => "Gebiet", :collection => gebiete, :value_method => :to_select_id , :label_method => :to_select_label , 
+      :input_html => {:class => "decent_looking_text"} %>
+  <% end %>
+  <%= f.input :grade, :label => "Schwierigkeitsgrad",:selected => input_grade_selected_index, :collection => uiaa_grades, :input_html => { :class => "span6" }  %>
+  <%= f.input :directions, :label => "Wegbeschreibung",:placeholder => input_directions_placeholder, :as => :text, :input_html => { :class => "span6" }  %>
+  <%= f.submit form_submit_label, :class => "span6"  %>
 <% end %>

@@ -1,8 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <b>Name:</b>
+  <%= @route.name %>
+</p>
+
+<p>
   <b>Area:</b>
-  <%= @route.area_id %>
+  <%= Area.find_by_id(@route.area_id).name %>
 </p>
 
 <p>
@@ -24,7 +29,23 @@
   <b>Longitude:</b>
   <%= @route.longitude %>
 </p>
+      <div><%= @route.pictures.count %> Bilder</div>
+  <div>
+     <%= render :partial => "shared/image_view", :locals => { route_or_area_object: @route, is_area: false} %>
+  </div>
+
+<div>
+  <%= gmaps(:map_options =>
+  { :auto_zoom => false, :zoom => 15}, "markers" => { "data" => @route.area.to_gmaps4rails }) %>
+</div>
 
 
-<%= link_to 'Edit', edit_route_path(@route) %> |
-<%= link_to 'Back', routes_path %>
+<div class="span8">
+  <%= render :partial => "shared/upload_pic_form", :locals => { route_or_area_object: @route, is_area: false} %>
+</div>
+<div style="clear:both"></div>
+<hr>
+
+<%= render :partial => "comments" %>
+<%= render :partial => "comments_form" %>
+<%= link_to 'Back', home_path %>

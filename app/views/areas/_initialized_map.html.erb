@@ -1,0 +1,10 @@
+<%# user of this partial is expected to pass the following locals:  %>    
+<% show_precise_location = nil if local_assigns[:show_precise_location].nil? %>
+<% gmaps_json = nil if local_assigns[:gmaps_json].nil?%>
+
+  <% if show_precise_location.nil? %>
+    <%# dont show marker, zoom out %>
+    <%= gmaps(:map_options => { :auto_zoom => false, :zoom => 5, :bounds => gmaps_json }) %>
+  <% else %>
+    <%= gmaps(:map_options => { :auto_zoom => false, :zoom => 15}, "markers" => { "data" => gmaps_json }) %>
+  <% end %>
