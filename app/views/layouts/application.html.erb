@@ -24,43 +24,15 @@
             <%= link_to "Klettergebiet eintragen", areas_new_path %></li>
           <li>
             <%= link_to "Route eintragen" ,routes_new_path %>
-            
+            <div class="demo">
+              <div id="slider"></div>
+            </div><!-- End demo -->
+
           </li>
           <li>
-            <!--h3>Route suchen</h3-->
-          <div id="accordion2" class="accordion">
-            <div class="accordion-group">
-              <div class="accordion-heading">
-                <a class="accordion-toggle" href="#collapseOne" data-parent="#accordion2" data-toggle="collapse">Kletterrouten suchen</a>
-              </div>
-              <div id="collapseOne" class="accordion-body collapse" style="height: 0px;">
-                <div class="accordion-inner">
-                  <div class="navbar-form-desc-txt">Ort</div>
-                  <input type="text" class="span12">
-                  <div class="navbar-form-desc-txt">Umkreis (in Kilometern)</div>
-                  <div class="btn-group" style="align:center">
-                    <button class="btn">10</button>
-                    <button class="btn">25</button>
-                    <button class="btn active">50</button>
-                    <button class="btn">100</button>
-                    <button class="btn">egal</button>
-                  </div>
+            <h3>Route suchen</h3>
+            <%= render :partial => "shared/search_form" %>
 
-                  <div class="navbar-form-desc-txt">Schwierigkeitsgrad (UIAA)</div>
-                  <div style="float:left">
-                    <select >
-                      <option>III</option>
-                      <option>IV</option>
-                      <option>V</option>
-                      <option>VI</option>
-                      <option>VII</option>
-                    </select>
-                  </div>
-                  <button class="btn" style="width:100px;margin-left:auto;float:right">Suchen</button>
-                  <div style="clear:both"></div>
-                </div>
-              </div>
-            </div>
           </li>
           <li class="nav-header">&nbsp;</li>
           <li >

@@ -22,8 +22,12 @@ Kletterfreund::Application.routes.draw do
   post "routes" => "routes#create", as: "routes"
   get "routes/:id" => "routes#show", as: "routes_show"
 
-    post "comments" => "comments#create", as: "comments"  
+  post "comments" => "comments#create", as: "comments"
 
+  post "search" => "routes#index", as: "search"  
+
+  get "grades/:id" => "grades#show_table", as: "grades_show_table"
+  
   root to: "pages#home", as: "home"
 
   #get "pages/home"

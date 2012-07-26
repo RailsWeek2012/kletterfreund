@@ -1,0 +1,13 @@
+
+<%= form_tag search_path do %>
+<div class="navbar-form-desc-txt">Gebiet</div>
+<%= text_field_tag :gebiet, params[:gebiet] %>
+<div class="navbar-form-desc-txt">Umkreis (Ort)</div>
+<%= text_field_tag :umkreis_ort, params[:umkreis_ort] %>
+<div class="navbar-form-desc-txt">Umkreis (in Kilometern)</div>
+<%= select_tag :umkreis_km, options_for_select([['10 km', 1], ['25 km', 2], ['50 km', 3], ['100 km', 4], ['250 km', 5], ['500 km', 6], ['egal', 7]], 7) %>
+<div class="navbar-form-desc-txt">Schwierigkeitsgrad (UIAA)</div>
+<%= select_tag :grade, options_for_select(uiaa_grades) %>
+<%= submit_tag "Suchen", :class => "btn" %>
+
+<% end %>

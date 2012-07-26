@@ -3,6 +3,7 @@
 <% input_directions_placeholder = "" if local_assigns[:input_directions_placeholder].nil? %>
 <% input_name_placeholder = "" if local_assigns[:input_name_placeholder].nil? %>
 <% show_area_select = false if local_assigns[:show_area_select].nil? %>
+<% show_lat_long_input = false if local_assigns[:show_lat_long_input].nil? %>
 
 <%= simple_form_for(@route, :html => {:class => 'form-vertical' }) do |f| %>
   <% if @route.errors.any? %>
@@ -21,8 +22,12 @@
   <% unless show_area_select  %>
     <%= f.input   :area_name,  :label => "Gebiet", :input_html => { :class => "span6" } %>
   <% else %>
-    <%= f.input :area_select_index, :label => "Gebiet", :collection => gebiete, :value_method => :to_select_id , :label_method => :to_select_label , 
-      :input_html => {:class => "decent_looking_text"} %>
+    <%= f.input :area_select_index, :label => "Gebiet", :collection => gebiete, :value_method => :to_select_id , :label_method => :to_select_label %>
+    <% if show_lat_long_input %>
+      <p> Koordinaten (optional) </p>
+      <%= f.input   :latitude,  :label => "Breitengrad", :input_html => { :class => "span6" } %>
+      <%= f.input   :longitude,  :label => "Laengengrad", :input_html => { :class => "span6" } %>
+    <% end %>
   <% end %>
   <%= f.input :grade, :label => "Schwierigkeitsgrad",:selected => input_grade_selected_index, :collection => uiaa_grades, :input_html => { :class => "span6" }  %>
   <%= f.input :directions, :label => "Wegbeschreibung",:placeholder => input_directions_placeholder, :as => :text, :input_html => { :class => "span6" }  %>

@@ -11,7 +11,7 @@
       <span><%= @area.pictures.count %> Bilder</span>
   </div>
   <div>
-    <%= render :partial => "image_view", :locals => { route_or_area_object: @area, is_area: true} %>
+    <%= render :partial => "shared/image_view", :locals => { route_or_area_object: @area, is_area: true} %>
   </div>
   <div>
     <span >Location:</span>
@@ -26,10 +26,40 @@
 </div>
 
 <div class="span8">
-    <%= render :partial => "upload_pic_form", :locals => { route_or_area_object: @area, is_area: true} %>
+    <%= render :partial => "shared/upload_pic_form", :locals => { route_or_area_object: @area, is_area: true} %>
 </div>
 <div style="clear:both"></div>
 
+<% if @area.show_avg_route_difficulty?%>
+  <div>
+    Durchschnittliche Routen-Schwierigkeit: <%= avg_route_difficulty(@area) %>
+    <br>
+    </div>
+<% end %>
+
+<h3>In diesem Gebiet gibt es folgende Routen:</h3>
+<table 
+    border="0" cellpadding="5" cellspacing="5"  
+    summary="Table with 5px cellspacing">   
+<tr cellspacing="5">
+  <th>Name der Route</th>
+  <th>Schwierigkeitsgrad</th>
+  <th>Anzahl der Bilder</th>
+</tr>
+<% @area.routes.each do |r| %>
+<tr>
+  <td>
+    <%= link_to r.name, routes_show_path(r.id) %>
+  </td>
+  <td>
+    <%= r.grade %>
+  </td>
+  <td>
+    <%= r.pictures.count %>
+  </td>
+</tr>
+<% end %>
+</table>
 </div>
 
 <%#= link_to 'Edit', edit_area_path(@area) %>

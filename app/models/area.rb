@@ -18,4 +18,13 @@ class Area < ActiveRecord::Base
     "#{id}"
   end
 
+  def routes
+    Route.where("routes.area_id = ?", self.id)
+  end
+
+
+  def show_avg_route_difficulty?
+    routes.length > 0
+  end
+
 end

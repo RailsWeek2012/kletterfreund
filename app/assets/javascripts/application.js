@@ -15,6 +15,7 @@
 //= require bootstrap
 //= require_tree .
 
+/*
 jQuery(function($){
         $('select').each(function(i, e){
                 if (!($(e).data('convert') == 'no')) {
@@ -33,3 +34,4 @@ jQuery(function($){
                 }
         });
 });
+*/

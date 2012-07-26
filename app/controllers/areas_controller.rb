@@ -63,4 +63,15 @@ class AreasController < ApplicationController
       flash.now[:alert] = "Fehler beim Auffinden der Default-Location"
     end
   end
+
+  # TODO move to model
+
+  def avg_route_difficulty area
+    avg = 0.0
+    area.routes.each { |r| avg += uiaa_grades.index(r.grade) }
+    new_uiaa_index = (avg / area.routes.length).round
+    uiaa_grades[new_uiaa_index]
+  end
+
+  helper_method :avg_route_difficulty
 end

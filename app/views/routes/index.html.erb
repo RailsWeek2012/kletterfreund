@@ -2,30 +2,25 @@
 
 <table>
   <tr>
-    <th>Area</th>
-    <th>Grade</th>
-    <th>Directions</th>
-    <th>Latitude</th>
-    <th>Longitude</th>
-    <th></th>
+    <th>Name</th>
+    <th>Klettergebiet</th>
+    <th>Schwierigkeitsgrad</th>
     <th></th>
     <th></th>
   </tr>
 
 <% @routes.each do |route| %>
   <tr>
-    <td><%= route.area_id %></td>
+    <td><%= link_to route.name, routes_show_path(route.id) %>
+    <td><%= Area.find(route.area_id).name %></td>
     <td><%= route.grade %></td>
-    <td><%= route.directions %></td>
-    <td><%= route.latitude %></td>
-    <td><%= route.longitude %></td>
-    <td><%= link_to 'Show', route %></td>
-    <td><%= link_to 'Edit', edit_route_path(route) %></td>
-    <td><%= link_to 'Destroy', route, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    
+
+    <% unless @umkreis_ort.nil? or @umkreis_ort.length == 0 %>
+      <td><%= @route_distance_to_umkreis_ort[route.id]/1000 %> km von <%= @umkreis_ort %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New Route', new_route_path %>

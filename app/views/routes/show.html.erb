@@ -7,12 +7,11 @@
 
 <p>
   <b>Area:</b>
-  <%= Area.find_by_id(@route.area_id).name %>
+  <%= link_to Area.find_by_id(@route.area_id).name, areas_show_path(@route.area.id)  %>
 </p>
 
 <p>
-  <b>Grade:</b>
-  <%= @route.grade %>
+  <%= render :partial => "shared/grade_view", :locals => { grade: @route.grade } %>
 </p>
 
 <p>
@@ -30,22 +29,41 @@
   <%= @route.longitude %>
 </p>
       <div><%= @route.pictures.count %> Bilder</div>
-  <div>
+  <div style="float:left; width:45%;">
      <%= render :partial => "shared/image_view", :locals => { route_or_area_object: @route, is_area: false} %>
   </div>
 
-<div>
+  <div style="float:left; width:45%;">
+  <% unless @route.has_different_cords_from_area? %>
+    <% marker = @route.area.to_gmaps4rails %>
+  <% else %>
+    <% marker = @route.gmaps_marker %>
+  <% end %>
   <%= gmaps(:map_options =>
-  { :auto_zoom => false, :zoom => 15}, "markers" => { "data" => @route.area.to_gmaps4rails }) %>
+  { :auto_zoom => false, :zoom => 15}, "markers" => { "data" => marker }) %>
 </div>
 
 
-<div class="span8">
+  <div style="clear:left;">
+<div>
   <%= render :partial => "shared/upload_pic_form", :locals => { route_or_area_object: @route, is_area: false} %>
 </div>
-<div style="clear:both"></div>
+
 <hr>
 
 <%= render :partial => "comments" %>
+
+<hr> 
+<% if @route.show_avg_user_grade? %>
+  <div>
+    <p> Gefuehlter Schwierigkeitsgrad: <%= avg_user_grade(@route)  %> </p>
+  </div>
+<% end %>
+
+
+<% if user_signed_in? %>
 <%= render :partial => "comments_form" %>
+<% end %>
+
+
 <%= link_to 'Back', home_path %>

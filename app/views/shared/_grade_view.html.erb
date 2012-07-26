@@ -1,0 +1,9 @@
+<%# user of this partial is expected to pass the following locals:  %>    
+<% grade = "keine Angabe" if local_assigns[:grade].nil? %>
+
+<div>
+  <span><b>Schwierigkeitsgrad (UIAA)</b>: <%= grade %></span> &nbsp; <span><a href="#" onclick="
+    window.open('/grades/<%= uiaa_grades.index(grade) %>', 'Schwierigkeitsgrad-Tabelle', 'height=100,width=300');"
+    >
+    Umrechnen</a> 
+</div>
