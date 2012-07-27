@@ -13,7 +13,7 @@
 <p>
   <%= render :partial => "shared/grade_view", :locals => { grade: @route.grade } %>
 </p>
-
+<% if @route.has_different_cords_from_area? %>
 <p>
   <b>Directions:</b>
   <%= @route.directions %>
@@ -28,6 +28,7 @@
   <b>Longitude:</b>
   <%= @route.longitude %>
 </p>
+<% end %>
       <div><%= @route.pictures.count %> Bilder</div>
   <div style="float:left; width:45%;">
      <%= render :partial => "shared/image_view", :locals => { route_or_area_object: @route, is_area: false} %>

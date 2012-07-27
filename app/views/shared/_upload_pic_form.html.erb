@@ -2,6 +2,7 @@
 <% is_area = nil if local_assigns[:is_area].nil? %>
 <% route_or_area_object = nil if local_assigns[:route_or_area_object].nil?%>
 
+<% if user_signed_in? %> 
   <h3>Bild hochladen</h3>
   <%= form_for @upload_picture, :html =>
   {:multipart => true} do |f| %>
@@ -18,3 +19,4 @@
   
   <%= f.submit "Upload" %>
   <% end %>
+<% end %>

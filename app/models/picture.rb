@@ -6,11 +6,11 @@ class Picture < ActiveRecord::Base
   mount_uploader :path_to_picture, PictureUploader
 
   def previous(offset = 0)    
-    self.class.first(:conditions => ['id < ? and pictureable_id = ?', self.id, self.pictureable_id], :limit => 1, :offset => offset, :order => "id DESC")
+    self.class.first(:conditions => ['id < ? and pictureable_id = ? and pictureable_type = ?', self.id, self.pictureable_id, self.pictureable_type], :limit => 1, :offset => offset, :order => "id DESC")
   end
 
   def next(offset = 0)
-    self.class.first(:conditions => ['id > ? and pictureable_id = ?', self.id, self.pictureable_id], :limit => 1, :offset => offset, :order => "id ASC")
+    self.class.first(:conditions => ['id > ? and pictureable_id = ? and pictureable_type = ?', self.id, self.pictureable_id, self.pictureable_type], :limit => 1, :offset => offset, :order => "id ASC")
   end
 
 end

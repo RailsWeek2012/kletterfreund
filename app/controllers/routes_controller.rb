@@ -108,8 +108,11 @@ class RoutesController < ApplicationController
 
   def avg_user_grade route 
     avg = 0.0
-    route.comments.each { |c| avg += uiaa_grades.index(c.user_grade) }
-    new_uiaa_grade_index = (avg / route.comments.length).round
+    keine_angabe = 0
+    route.comments.each { |c| 
+                         keine_angabe += 1 unless uiaa_grades.index(c.user_grade) > 0
+                        avg += uiaa_grades.index(c.user_grade) unless uiaa_grades.index(c.user_grade) == 0 }
+    new_uiaa_grade_index = (avg / (route.comments.length - keine_angabe)).round
     uiaa_grades[new_uiaa_grade_index]
   end
 

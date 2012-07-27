@@ -68,8 +68,11 @@ class AreasController < ApplicationController
 
   def avg_route_difficulty area
     avg = 0.0
-    area.routes.each { |r| avg += uiaa_grades.index(r.grade) }
-    new_uiaa_index = (avg / area.routes.length).round
+    keine_angabe = 0
+    area.routes.each { |r|  
+                       keine_angabe += 1 unless uiaa_grades.index(r.grade) > 0
+                       avg += uiaa_grades.index(r.grade) unless uiaa_grades.index(r.grade) == 0 }
+    new_uiaa_index = (avg / (area.routes.length - keine_angabe)).round
     uiaa_grades[new_uiaa_index]
   end
 

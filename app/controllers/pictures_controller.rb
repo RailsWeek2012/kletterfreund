@@ -26,7 +26,6 @@ class PicturesController < ApplicationController
   end
 
   def add_pic_to_route route_id
-    debugger
     params[:picture].delete(:route_id)
     @picture = Picture.new(params[:picture])
     

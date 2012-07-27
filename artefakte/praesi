@@ -1,0 +1,27 @@
+Suchen
+Eschbacher Klippen, 50 km von Giessen
+Geiernest
+  Bilder adden
+  Kommentieren
+  Grad-Tabelle
+Eschbacher Klippen
+  Bilder
+  Durchschnittsgrad
+Gebiet adden
+  Steinwald Poppenhausen
+Route adden
+  Moralpredigt Hintere Steinwand VII-
+Suchen 200km von Giessen
+
+KM-Distanz:
+  https://github.com/apneadiving/Google-Maps-for-Rails/wiki/Methods
+  Destination function
+  https://developers.google.com/maps/documentation/directions/#RequestParameters
+  debugger route.rb get_distance from_area
+Pictures
+  Polymorphe Assoziation (Route,Area)
+  Upload: keine new action da form in show action anzeigt wird, route_id/area_id als hidden Field, dann in create zu Route bzw Area adden
+  Anzeige: Annahme: naechstes bild hat groessere id, vorheriges hat niedrigere id (picture.rb next/prev)
+  get request mit picture id und route/area id als parameter, dann redirect auf show action von route/area
+Shared partials
+  pic upload/view als shared partial dry

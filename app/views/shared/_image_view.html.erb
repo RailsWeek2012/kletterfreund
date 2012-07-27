@@ -10,6 +10,7 @@
       <% selected_picture = route_or_area_object.pictures.first %>
     <% end %>
         <%= image_tag(selected_picture.path_to_picture) unless selected_picture.nil? %>
+        <br>
     <% unless selected_picture.nil? or  selected_picture.previous.nil? %>
         <% if is_area %>
             <%= link_to "<<", prev_picture_path(:area_id => route_or_area_object.id, :picture_id => selected_picture.previous.id) %>

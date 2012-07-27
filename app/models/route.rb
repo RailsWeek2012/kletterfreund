@@ -21,11 +21,11 @@ class Route < ActiveRecord::Base
   end
 
   def has_different_cords_from_area?
-    self.latitude != area.latitude or self.longitude != area.longitude
+    self.latitude != area.latitude and self.longitude != area.longitude
   end
 
   def gmaps_marker 
-    return "#{self.latitude}, #{self.longitude}"
+    "[{\"lat\":#{self.latitude},\"lng\":#{self.longitude}}]"
   end
 
   def show_avg_user_grade? 
