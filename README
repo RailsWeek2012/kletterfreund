@@ -1,8 +1,13 @@
 Verwendete Ressourcen:
   Folien aus der Vorlesung
-  Twitter-Bootstrap;  http://twitter.github.com/bootstrap/components.html
-  Carrier-Wave;       https://github.com/jnicklas/carrierwave
-  Simple-Form;        https://github.com/plataformatec/simple_form
-  Gmaps4Rails;        https://developers.google.com/maps/documentation/directions/#RequestParameters
-                      https://github.com/apneadiving/Google-Maps-for-Rails/
-
+  Twitter-Bootstrap
+  Carrier-Wave
+  Simple-Form
+  Gmaps4Rails
+                    
+Quellenangaben:
+  http://twitter.github.com/bootstrap/components.html
+  https://github.com/jnicklas/carrierwave
+  https://github.com/plataformatec/simple_form
+  https://developers.google.com/maps/documentation/directions/#RequestParameters
+  https://github.com/apneadiving/Google-Maps-for-Rails/
